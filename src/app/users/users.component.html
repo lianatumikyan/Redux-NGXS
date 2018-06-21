@@ -1,0 +1,27 @@
+<div><h2>Users</h2>
+<form [formGroup]="userForm">
+  <div class="form-group">
+    <label class="center-block">FirstName:
+      <input class="form-control" formControlName="firstname">
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">LastName:
+      <input class="form-control" formControlName="lastname">
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block" *ngIf="!updating">
+      <input type="submit" name="Add" value="Add" (click)="addUser()" class="form-control">
+    </label>
+    <label class="center-block" *ngIf="updating">
+      <input type="submit" name="Update" value="Update" (click)="updateUser()" class="form-control">
+    </label>
+  </div>
+</form>
+</div>
+<div>
+  <div (click)="setInForm(user)" *ngFor="let user of users$ | async">
+    <span>{{user.firstname}} {{user.lastname}}</span><span (click)="removeUser(user.firstname)">&nbsp;&nbsp;x</span>
+  </div>
+</div>
